@@ -66,7 +66,7 @@ fun tugas(modifier: Modifier){
             modifier = Modifier.width(250.dp),
             label = { Text("Email") },
             onValueChange = {
-                textAlamat = it
+                textEmail = it
             }
         )
     }
