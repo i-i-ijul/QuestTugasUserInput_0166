@@ -29,7 +29,7 @@ fun tugas(modifier: Modifier){
     var textJK by remember { mutableStateOf("") }
 
     var nama by remember { mutableStateOf("") }
-    var alamat by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var jenis by remember { mutableStateOf("") }
     var gender:List<String> = listOf("Laki laki, Perempuan")
 
