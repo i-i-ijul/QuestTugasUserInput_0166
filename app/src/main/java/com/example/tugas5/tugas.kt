@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun tugas(modifier: Modifier){
     var textNama by remember { mutableStateOf("") }
-    var textAlamat by remember { mutableStateOf("") }
+    var textEmail by remember { mutableStateOf("") }
     var textJK by remember { mutableStateOf("") }
 
     var nama by remember { mutableStateOf("") }
@@ -46,7 +46,7 @@ fun tugas(modifier: Modifier){
             }
         )
         Row{
-            gender.forEach { item ->
+            skill.forEach { item ->
                 Row(modifier = Modifier.selectable(
                     selected = textJK == item,
                     onClick = {textJK = item}
