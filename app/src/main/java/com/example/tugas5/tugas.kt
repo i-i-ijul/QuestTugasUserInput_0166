@@ -14,4 +14,5 @@ fun tugas(modifier: Modifier){
     var nama by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
     var jenis by remember { mutableStateOf("") }
+    var gemder:List<String> = listOf("Laki laki, Perempuan")
 }
