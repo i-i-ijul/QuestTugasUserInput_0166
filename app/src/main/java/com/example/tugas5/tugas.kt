@@ -32,7 +32,8 @@ fun tugas(modifier: Modifier){
 
     var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var skill:List<String> = listOf("Android, UI/UX, Web")
+    var skill by remember { mutableStateOf("") }
+    var skillUser:List<String> = listOf("Android, UI/UX, Web")
 
     Column(modifier = Modifier.padding(top = 50.dp),
         verticalArrangement = Arrangement.Top,
@@ -47,15 +48,15 @@ fun tugas(modifier: Modifier){
             }
         )
         Row{
-            skill.forEach { item ->
+            skillUser.forEach { item ->
                 Row(modifier = Modifier.selectable(
-                    selected = textJK == item,
-                    onClick = {textJK = item}
+                    selected = textSkill == item,
+                    onClick = {textSkill = item}
                 ), verticalAlignment = Alignment.CenterVertically) {
                     RadioButton(
-                        selected = textJK == item,
+                        selected = textSkill == item,
                         onClick = {
-                            textJK = item
+                            textSkill = item
                         })
                     Text(item)
                 }
@@ -83,12 +84,14 @@ fun tugas(modifier: Modifier){
         )
         Button(
             modifier = Modifier.fillMaxWidth(1f),
-            enabled = textEmail.isNotEmpty() && textNama.isNotEmpty() && textJK.isNotEmpty(),
+            enabled = textEmail.isNotEmpty() && textNama.isNotEmpty() && textSkill.isNotEmpty(),
             onClick = {
                 nama = textNama
-                skill = textJK
+                skill = textSkill
                 email = textEmail
             }
-        )
+        ) {
+
+        }
     }
 }
