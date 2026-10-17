@@ -3,9 +3,11 @@ package com.example.tugas5
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -31,7 +33,7 @@ fun tugas(modifier: Modifier){
     var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var jenis by remember { mutableStateOf("") }
-    var skill:List<String> = listOf("Laki laki, Perempuan")
+    var skill:List<String> = listOf("Android, UI/UX, Web")
 
     Column(modifier = Modifier.padding(top = 50.dp),
         verticalArrangement = Arrangement.Top,
@@ -79,6 +81,15 @@ fun tugas(modifier: Modifier){
             ),
             thickness = dimensionResource(R.dimen.divider_tipis),
             color = Color.DarkGray
+        )
+        Button(
+            modifier = Modifier.fillMaxWidth(1f),
+            enabled = textEmail.isNotEmpty() && textNama.isNotEmpty() && textJK.isNotEmpty(),
+            onClick = {
+                nama = textNama
+                skill = textJK
+                email = textEmail
+            }
         )
     }
 }
