@@ -8,4 +8,5 @@ import androidx.compose.ui.Modifier
 @Composable
 fun tugas(modifier: Modifier){
     var textNama by remember { mutableStateOf("") }
+    var textAlamat by remember { mutableStateOf("") }
 }
