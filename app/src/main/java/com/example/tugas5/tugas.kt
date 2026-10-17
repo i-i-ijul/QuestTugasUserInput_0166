@@ -28,11 +28,10 @@ import androidx.compose.ui.unit.dp
 fun tugas(modifier: Modifier){
     var textNama by remember { mutableStateOf("") }
     var textEmail by remember { mutableStateOf("") }
-    var textJK by remember { mutableStateOf("") }
+    var textSkill by remember { mutableStateOf("") }
 
     var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var jenis by remember { mutableStateOf("") }
     var skill:List<String> = listOf("Android, UI/UX, Web")
 
     Column(modifier = Modifier.padding(top = 50.dp),
