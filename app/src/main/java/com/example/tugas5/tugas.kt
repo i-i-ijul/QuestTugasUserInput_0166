@@ -1,126 +1,192 @@
 package com.example.tugas5
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun tugas(modifier: Modifier){
+fun tugas(modifier: Modifier = Modifier) {
     var textNamaDepan by remember { mutableStateOf("") }
     var textNamaBelakang by remember { mutableStateOf("") }
     var textEmail by remember { mutableStateOf("") }
-    var textSkill by remember { mutableStateOf("") }
+    var textTglLahir by remember { mutableStateOf("") }
+    var textExperience by remember { mutableStateOf("") }
 
-    var nama by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
-    var skill by remember { mutableStateOf("") }
-    val skillUser:List<String> = listOf("Android", "UI/UX", "Web")
+    val listSkills = listOf("Android", "UI/UX", "Web")
+    val selectedSkills = remember { mutableStateMapOf<String, Boolean>() }
 
-    Column(modifier = Modifier.padding(top = 50.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        Row(
+    Box(
+        modifier = modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Header Background",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            OutlinedTextField(
-                modifier = Modifier.weight(1f),
-                value = textNamaDepan,
-                singleLine = true,
-                shape = MaterialTheme.shapes.large,
-                label = { Text(text = "Nama Depan") },
-                onValueChange = {
-                    textNamaDepan = it
-                }
-            )
-            OutlinedTextField(
-                modifier = Modifier.weight(1f),
-                value = textNamaBelakang,
-                singleLine = true,
-                shape = MaterialTheme.shapes.large,
-                label = { Text(text = "Nama Belakang") },
-                onValueChange = {
-                    textNamaBelakang = it
-                }
-            )
-        }
-        OutlinedTextField(
-            value = textEmail,
-            singleLine = true,
-            modifier = Modifier.width(250.dp),
-            label = { Text("Email") },
-            onValueChange = {
-                textEmail = it
-            }
+                .fillMaxWidth()
+                .height(260.dp)
         )
-        Row{
-            skillUser.forEach { item ->
-                Row(modifier = Modifier.selectable(
-                    selected = textSkill == item,
-                    onClick = {textSkill = item}
-                ), verticalAlignment = Alignment.CenterVertically) {
-                    RadioButton(
-                        selected = textSkill == item,
-                        onClick = {
-                            textSkill = item
-                        })
-                    Text(item)
-                }
-            }
-        }
-        HorizontalDivider(
-            modifier = Modifier.padding(
-                bottom =
-                    dimensionResource(R.dimen.padding_medium),
-                top = dimensionResource(
-                    R.dimen.padding_medium
-                )
-            ),
-            thickness = dimensionResource(R.dimen.divider_tipis),
-            color = Color.DarkGray
-        )
-        Button(
-            modifier = Modifier.fillMaxWidth(1f),
-            enabled = textEmail.isNotEmpty() && textNamaDepan.isNotEmpty() && textSkill.isNotEmpty(),
-            onClick = {
-                nama = textNamaDepan
-                skill = textSkill
-                email = textEmail
-            }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
-            Text(stringResource(R.string.submit))
-        }
-        HorizontalDivider(
-            modifier = Modifier.padding(
-                bottom =
-                    dimensionResource(R.dimen.padding_medium), top = dimensionResource(
-                    R.dimen.padding_medium
+            Spacer(modifier = Modifier.height(180.dp))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Text(
+                        text = "Form Biodata",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF6A1B9A)
                     )
-            ),
-            thickness = dimensionResource(R.dimen.divider_tipis),
-            color = Color.DarkGray
-        )
+                    Text(
+                        text = "isi form dulu ya ganteng awokwok",
+                        fontSize = 12.sp,
+                        color = Color.Gray
+                    )
+
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = textNamaDepan,
+                            onValueChange = { textNamaDepan = it },
+                            label = { Text("Nama Depan") },
+                            singleLine = true,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1f)
+                        )
+                        OutlinedTextField(
+                            value = textNamaBelakang,
+                            onValueChange = { textNamaBelakang = it },
+                            label = { Text("Nama Belakang") },
+                            singleLine = true,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                    OutlinedTextField(
+                        value = textEmail,
+                        onValueChange = { textEmail = it },
+                        label = { Text("Email") },
+                        singleLine = true,
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = textTglLahir,
+                            onValueChange = { textTglLahir = it },
+                            label = { Text("Tgl Lahir") },
+                            singleLine = true,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1f)
+                        )
+                        OutlinedTextField(
+                            value = textExperience,
+                            onValueChange = { textExperience = it },
+                            label = { Text("Experience") },
+                            singleLine = true,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.Start
+                    ) {
+                        Text(
+                            text = "Pilih Skill Anda :",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            listSkills.forEach { skill ->
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Start
+                                ) {
+                                    Checkbox(
+                                        checked = selectedSkills[skill] ?: false,
+                                        onCheckedChange = { isChecked ->
+                                            selectedSkills[skill] = isChecked
+                                        }
+                                    )
+                                    Text(text = skill, fontSize = 12.sp)
+                                }
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Button(
+                        onClick = {},
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFFE0E0E0),
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text(text = "Proceed", fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+        }
     }
 }
