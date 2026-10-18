@@ -28,24 +28,25 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun tugas(modifier: Modifier){
     var textNamaDepan by remember { mutableStateOf("") }
+    var textNamaBelakang by remember { mutableStateOf("") }
     var textEmail by remember { mutableStateOf("") }
     var textSkill by remember { mutableStateOf("") }
 
     var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var skill by remember { mutableStateOf("") }
-    var skillUser:List<String> = listOf("Android, UI/UX, Web")
+    val skillUser:List<String> = listOf("Android, UI/UX, Web")
 
     Column(modifier = Modifier.padding(top = 50.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally) {
         OutlinedTextField(
-            value = textNama,
+            value = textNamaDepan,
             singleLine = true,
             shape = MaterialTheme.shapes.large,
             label = { Text(text = "Nama Depan") },
             onValueChange = {
-                textNama = it
+                textNamaDepan = it
             }
         )
         OutlinedTextField(
@@ -85,9 +86,9 @@ fun tugas(modifier: Modifier){
         )
         Button(
             modifier = Modifier.fillMaxWidth(1f),
-            enabled = textEmail.isNotEmpty() && textNama.isNotEmpty() && textSkill.isNotEmpty(),
+            enabled = textEmail.isNotEmpty() && textNamaDepan.isNotEmpty() && textSkill.isNotEmpty(),
             onClick = {
-                nama = textNama
+                nama = textNamaDepan
                 skill = textSkill
                 email = textEmail
             }
