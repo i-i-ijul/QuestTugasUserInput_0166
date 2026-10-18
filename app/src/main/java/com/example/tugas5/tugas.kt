@@ -35,20 +35,37 @@ fun tugas(modifier: Modifier){
     var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var skill by remember { mutableStateOf("") }
-    val skillUser:List<String> = listOf("Android, UI/UX, Web")
+    val skillUser:List<String> = listOf("Android", "UI/UX", "Web")
 
     Column(modifier = Modifier.padding(top = 50.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally) {
-        OutlinedTextField(
-            value = textNamaDepan,
-            singleLine = true,
-            shape = MaterialTheme.shapes.large,
-            label = { Text(text = "Nama Depan") },
-            onValueChange = {
-                textNamaDepan = it
-            }
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
+                value = textNamaDepan,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                label = { Text(text = "Nama Depan") },
+                onValueChange = {
+                    textNamaDepan = it
+                }
+            )
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
+                value = textNamaBelakang,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                label = { Text(text = "Nama Belakang") },
+                onValueChange = {
+                    textNamaBelakang = it
+                }
+            )
+        }
         OutlinedTextField(
             value = textEmail,
             singleLine = true,
