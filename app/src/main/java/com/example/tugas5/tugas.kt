@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun tugas(modifier: Modifier){
-    var textNama by remember { mutableStateOf("") }
+    var textNamaDepan by remember { mutableStateOf("") }
     var textEmail by remember { mutableStateOf("") }
     var textSkill by remember { mutableStateOf("") }
 
@@ -48,6 +48,15 @@ fun tugas(modifier: Modifier){
                 textNama = it
             }
         )
+        OutlinedTextField(
+            value = textEmail,
+            singleLine = true,
+            modifier = Modifier.width(250.dp),
+            label = { Text("Email") },
+            onValueChange = {
+                textEmail = it
+            }
+        )
         Row{
             skillUser.forEach { item ->
                 Row(modifier = Modifier.selectable(
@@ -63,15 +72,6 @@ fun tugas(modifier: Modifier){
                 }
             }
         }
-        OutlinedTextField(
-            value = textEmail,
-            singleLine = true,
-            modifier = Modifier.width(250.dp),
-            label = { Text("Email") },
-            onValueChange = {
-                textEmail = it
-            }
-        )
         HorizontalDivider(
             modifier = Modifier.padding(
                 bottom =
